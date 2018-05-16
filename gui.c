@@ -19,7 +19,7 @@ void PrintDistanceArray(int** distance_array, Position* micromouse){
 				printf("X ");
 			}
 			else{
-				printf("%d ", *(distance_array + i + j));
+				printf("%d ", *(distance_array + i*7 + j));
 			}
 		}
 		printf("\n");
@@ -31,10 +31,10 @@ void PrintWallArray(int** wall_array, Position* micromouse){
 	for(int i = 0; i < 7; i++){
 		for(int j = 0; j < 7; j++){
 			if((micromouse->x == i) && (micromouse->y == j)){
-				printf("X ");
+				printf("X  ");
 			}
 			else{
-				printf("%d ", *(wall_array + i + j));
+				printf("%d  ", *(wall_array + i*7 + j));
 			}
 		}
 		printf("\n");

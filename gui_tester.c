@@ -11,8 +11,8 @@
 void InitializeDistanceArray(int** array_to_be_initialized){
 	for(int i = 0; i < 7; i++){
 		for(int j = 0; j < 7; j++){
-			printf("X: %d, Y: %d => %d\n", i, j, (abs(i - 3) + abs(j - 3))); //To test for value output
-			*(array_to_be_initialized + i + j) = abs(i - 3) + abs(j - 3);
+			//printf("X: %d, Y: %d => %d\n", i, j, (abs(i - 3) + abs(j - 3))); //To test for value output
+			*(array_to_be_initialized + i*7 + j) = abs(i - 3) + abs(j - 3);
 		}
 	}
 }
@@ -20,10 +20,13 @@ void InitializeDistanceArray(int** array_to_be_initialized){
 void InitializeWallArray(int** array_to_be_initialized){
 	for(int i = 0; i < 7; i++){
 		for(int j = 0; j < 7; j++){
-			if(i == 0){ *(array_to_be_initialized + i + j) += 8; }//Wall to North
-			if(i == 6){ *(array_to_be_initialized + i + j) += 4; }//Wall to South
-			if(j == 0){ *(array_to_be_initialized + i + j) += 1; }//Wall to West
-			if(j == 6){ *(array_to_be_initialized + i + j) += 2; }//Wall to East
+			if(i == 0){ *(array_to_be_initialized + i*7 + j) += 2; }//Wall to East
+			if(i == 6){ *(array_to_be_initialized + i*7 + j) += 1; }//Wall to West
+			if(j == 6){ *(array_to_be_initialized + i*7 + j) += 4; }//Wall to South
+			if(j == 0){ *(array_to_be_initialized + i*7 + j) += 8; }//Wall to North
+			int temp = *(array_to_be_initialized + i*7 + j);
+			*(array_to_be_initialized + i*7 + j) = temp / 4;
+			//printf("X: %d, Y: %d => %d\n", i, j, *(array_to_be_initialized + i*7 + j)); 
 		}
 	}
 }
