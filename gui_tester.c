@@ -4,6 +4,7 @@
  * For Micromouse Algorithm Project
  */
 #include <stdlib.h>
+#include <time.h>
 #include <math.h>
 #include "micromouse_structs.h"
 #include "gui.h"
@@ -27,6 +28,19 @@ void InitializeWallArray(int** array_to_be_initialized){
 			int temp = *(array_to_be_initialized + i*7 + j);
 			*(array_to_be_initialized + i*7 + j) = temp / 4;
 			//printf("X: %d, Y: %d => %d\n", i, j, *(array_to_be_initialized + i*7 + j)); 
+		}
+	}
+}
+
+//Adds one wall at random, if applicable, to the wall array
+void AddRandomWallToWallArray(int** array_to_be_modified){
+	srand(time(NULL));
+	for(int i = 1; i < 6; i++){
+		for(int j = 1; j < 6; j++){
+			int random_wall_value = pow(2, (rand() % 4));//Get the 2^n from 2 raised to a random number % 4
+			if(((*(array_to_be_modified + i*7 + j)) & random_wall_value) == 0){
+				(*(array_to_be_modified + i*7 + j)) += random_wall_value;
+			}
 		}
 	}
 }
@@ -91,14 +105,36 @@ void Test_2(){
 
 //Using wall test for random wall placements
 void Test_3(){
+	Position* mouse_pos = (Position*) calloc(1, sizeof(Position));
+	mouse_pos->x = 0;
+	mouse_pos->y = 0;
+	mouse_pos->d = 's';
+	int** distance_array = (int**) calloc(49, sizeof(int*));
+	int** wall_array = (int**) calloc (49, sizeof(int*));
 
+	InitializeDistanceArray(distance_array);
+	InitializeWallArray(wall_array);
+
+	//Testing the AddRandomWallToArray Function
+	AddRandomWallToWallArray(wall_array);
+	AddRandomWallToWallArray(wall_array);
+	AddRandomWallToWallArray(wall_array);
+
+	PrintToScreen(distance_array, wall_array, mouse_pos);
+
+	free(mouse_pos);
+	mouse_pos = NULL;
+	*distance_array = NULL;
+	free(*distance_array);
+	*wall_array = NULL;
+	free(*wall_array);
 }
 
 int main(){
 
 	Test_1();
 	Test_2();
-	//Test_3();
+	Test_3();
 
 	puts("Passed all tests!");
   return 0;
