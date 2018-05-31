@@ -32,14 +32,32 @@ void InitializeWallArray(int** array_to_be_initialized){
 	}
 }
 
-//Adds one wall at random, if applicable, to the wall array
+/*//Adds one wall at random, if applicable, to the wall array
 void AddRandomWallToWallArray(int** array_to_be_modified){
 	srand(time(NULL));
 	for(int i = 1; i < 6; i++){
 		for(int j = 1; j < 6; j++){
 			int random_wall_value = pow(2, (rand() % 4));//Get the 2^n from 2 raised to a random number % 4
-			if(((*(array_to_be_modified + i*7 + j)) & random_wall_value) == 0){
+			int* atbm_value = &(**(array_to_be_modified + i*7 + j));
+			if((random_wall_value) == 1){
 				(*(array_to_be_modified + i*7 + j)) += random_wall_value;
+				int temp = (*(array_to_be_modified + i*7 + j));
+				(*(array_to_be_modified + i*7 + j)) = 1
+			}
+		}
+	}
+}*/
+
+//For now, only call this once
+void AddRandomWallToWallArray(int** array_to_be_modified){
+	srand(time(NULL));
+	for(int i = 1; i < 6; i++){
+		for(int j = 1; j < 6; j++){
+			int random_wall_value = pow(2, rand() % 4);
+			if(!(rand() % 5)){
+				puts("Called");
+				int temp = random_wall_value;
+			  *(array_to_be_modified + i*7 + j) = temp;
 			}
 		}
 	}
@@ -105,6 +123,7 @@ void Test_2(){
 
 //Using wall test for random wall placements
 void Test_3(){
+	puts("Here?");
 	Position* mouse_pos = (Position*) calloc(1, sizeof(Position));
 	mouse_pos->x = 0;
 	mouse_pos->y = 0;
@@ -114,9 +133,10 @@ void Test_3(){
 
 	InitializeDistanceArray(distance_array);
 	InitializeWallArray(wall_array);
-
+	puts("Before the Addition");
 	//Testing the AddRandomWallToArray Function
 	AddRandomWallToWallArray(wall_array);
+	puts("After the addition");
 	AddRandomWallToWallArray(wall_array);
 	AddRandomWallToWallArray(wall_array);
 
@@ -134,8 +154,9 @@ int main(){
 
 	Test_1();
 	Test_2();
+	//puts("Before the calling of test");
 	Test_3();
 
-	puts("Passed all tests!");
+	//puts("Passed all tests!");
   return 0;
 }
