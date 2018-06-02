@@ -41,7 +41,6 @@ void PrintWallArray(int** wall_array, Position* micromouse){
 	}
 }
 
-
 void PrintToScreen(int** distance_array, int** wall_array, Position* mouse_pos){
  	PrintMicromouseStatistics(mouse_pos);
  	PrintDistanceArray(distance_array, mouse_pos);
