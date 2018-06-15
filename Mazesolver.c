@@ -7,46 +7,47 @@ void ChooseNextPath(){
 }
 
 
- int RightSensor(){
-	if((int)Position.d==8){ return *(wall_array+7*Position.x+Position.y)&2;}
+int RightSensor(Position mouse){ 
+	if(mouse.d == 'n'){ return *(wall_array+7*Position.x+Position.y)&2;}
 	
-	if((int)Position.d==4){ return *(wall_array+7*Position.x+Position.y)&1;}
+	if(mouse.d == 's'){ return *(wall_array+7*Position.x+Position.y)&1;}
 
-	if((int)Position.d==2){ return *(wall_array+7*Position.x+Position.y)&4;}
+	if(mouse.d == 'e'){ return *(wall_array+7*Position.x+Position.y)&4;}
 
-	if ((int)Position.d==1){return *(wall_array+7*Position.x+Position.y)&8;}
+	if(mouse.d == 'w'){ return *(wall_array+7*Position.x+Position.y)&8;}
 
-	else{return 0;}
-  }
+	else{ return 0; }
+}
 
- int LeftSensor(){
-    if((int)Position.d==8){ return *(wall_array+7*Position.x+Position.y)&1;}
+int LeftSensor(Position mouse){
+    if(Position.d == 'n'){ return *(wall_array+7*Position.x+Position.y)&1;}
 	
-	if((int)Position.d==4){ return *(wall_array+7*Position.x+Position.y)&2;}
+	if(Position.d == 's'){ return *(wall_array+7*Position.x+Position.y)&2;}
 
-	if((int)Position.d==2){ return *(wall_array+7*Position.x+Position.y)&8;}
+	if(Position.d == 'e'){ return *(wall_array+7*Position.x+Position.y)&8;}
 
-	if ((int)Position.d==1){return *(wall_array+7*Position.x+Position.y)&4;}
+	if(Position.d == 'w'){ return *(wall_array+7*Position.x+Position.y)&4;}
 
-	else{return 0;}
-  }
+	else{ return 0; }
+ }
 
- int FrontSensor(
+int FrontSensor(Position mouse){
 
-    if(Position.d==8){ return *(wall_array+7*Position.x+Position.y)&8;}
+    if(Position.d == 'n'){ return *(wall_array+7*Position.x+Position.y)&8;}
 	
-	if(Position.d==4){ return *(wall_array+7*Position.x+Position.y)&4;}
+	if(Position.d == 'n'){ return *(wall_array+7*Position.x+Position.y)&4;}
 
-	if(Position.d==2){ return *(wall_array+7*Position.x+Position.y)&2;}
+	if(Position.d == 'n'){ return *(wall_array+7*Position.x+Position.y)&2;}
 
-	if(Position.d==1){return *(wall_array+7*Position.x+Position.y)&1;}
+	if(Position.d == 'n'){ return *(wall_array+7*Position.x+Position.y)&1;}
 
-	else{return 0;}
+	else{ return 0; }
 
-	)
+}
  /* Previously "Wall Exists", This does the check to infer if walls exist at a given location*/
- int CheckForWalls(){
-     return RightSensor()+FrontSensor()+LeftSensor();	
+int CheckForWalls(){
+ 	//If a wall exists, update the wall array
+
 }
 
 /* Initializes the Distance and Wall Array */

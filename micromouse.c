@@ -56,7 +56,7 @@ int main(){
 	int** wall_array = (int**) calloc(49, sizeof(int*));
 
 	PrintToScreen(distance_array, wall_array, mouse_pos);
-	char user_input = 0;
+	char user_input = '0', ignore_char = '\n';
 	//int current_move = 1; //Keeps track of what 'move' the Micromouse is currently on
 
 	//Act (sending paramenters) and Assert (what shows up on the screen)
@@ -64,7 +64,7 @@ int main(){
 	while(user_input != '2'){
 		//printf("\nMove -> %d\n", current_move);
 		printf("0: Prints the current status of the maze and the Micromouse\n1: Moves the Micromouse one step\n2: Exit the program\nAnything Else: Invalid Input\nUser Input: ");
-		scanf("%c", &user_input);
+		scanf(" %c", &user_input);
 		switch(user_input){
 			case '0':
 				PrintToScreen(distance_array, wall_array, mouse_pos);
@@ -76,9 +76,10 @@ int main(){
 			case '2':
 				break;
 			default:
+				break;
 				puts("The input given was not in the selectable options.");
 		}
-		//sleep(4);
+		//scanf("%c", &user_input);
 	}
 
 	//Disarrange
