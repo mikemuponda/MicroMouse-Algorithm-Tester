@@ -1,5 +1,11 @@
+/* May 13th, 2018
+ * Runs the Micromouse Program
+ * Written by: Sam Reles
+ * For Micromouse Algorithm Project
+ */
 #include "micromouse.h"
 #include "gui.h"
+
 #include <unistd.h>
 
 void InitializeDistanceArray(int** array_to_be_initialized){
@@ -40,8 +46,9 @@ void AddRandomWallToWallArray(int** array_to_be_modified){
 	}
 }
 
-void MoveMicromouse(){
+void MoveMicromouse(Position* mouse_pos){
 	//This WILL call the commands to choose movements
+
 }
 
 /* Main Method */
@@ -54,6 +61,11 @@ int main(){
 	mouse_pos->d = 's';
 	int** distance_array = (int**) calloc(49, sizeof(int*));
 	int** wall_array = (int**) calloc(49, sizeof(int*));
+	InitializeDistanceArray(distance_array);
+	InitializeWallArray(wall_array);
+
+	AddRandomWallToWallArray(wall_array);
+	AddRandomWallToWallArray(wall_array);
 
 	PrintToScreen(distance_array, wall_array, mouse_pos);
 	char user_input = '0', ignore_char = '\n';
@@ -70,7 +82,7 @@ int main(){
 				PrintToScreen(distance_array, wall_array, mouse_pos);
 				break;
 			case '1':
-				MoveMicromouse();
+				MoveMicromouse(mouse_pos);
 				//current_move += 1; //Increment 'current move'
 				break;
 			case '2':
@@ -83,12 +95,19 @@ int main(){
 	}
 
 	//Disarrange
+	//puts("here");
 	free(mouse_pos);
+	//puts("here2");
 	mouse_pos = NULL;
-	free(*distance_array);
+	//puts("here3");
+	//free(*distance_array);
+	//puts("here4");
 	*distance_array = NULL;
-	free(*wall_array);
+	//puts("here5");
+	//free(*wall_array);
+	//puts("here6");
 	*wall_array = NULL;
+	//puts("here7");
 
 	puts("Thanks for using the program!");
 	return 0;

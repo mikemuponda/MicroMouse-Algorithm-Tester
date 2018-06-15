@@ -1,3 +1,8 @@
+/* May 13th, 2018
+ * .h file for the Main Method
+ * Written by: Sam Reles
+ * For Micromouse Algorithm Project
+ */
 #ifndef MICROMOUSE_H_
 #define MICROMOUSE_H_
 
