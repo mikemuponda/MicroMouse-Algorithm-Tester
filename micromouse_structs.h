@@ -10,7 +10,14 @@
 typedef struct Position {
 	int x;
 	int y;
+	int xPrev;
+	int yPrev;
 	char d;
 } Position;
+
+typedef struct Cell {
+	int x;
+	int y;
+} Cell;
 
 #endif
